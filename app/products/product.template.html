@@ -18,7 +18,8 @@
                 <td>{{product.description}}</td>
                 <td>{{product.price}}</td>
                 <td>
-                    <button class="btn btn-info">
+                    <button class="btn btn-info"
+                            (click)="showEditProductForm(product)">
                         <i class="fa fa-edit"></i>
                     </button>
                     <button class="btn btn-danger">
@@ -29,23 +30,32 @@
             </tbody>
         </table>
 
-        <button class="btn btn-success"><i class="fa fa-plus"></i></button>
+        <button class="btn btn-success"
+                (click)="showAddProductForm()">
+            <i class="fa fa-plus"></i>
+        </button>
         <br />
         <br />
 
-        <form>
+        <form *ngIf="productForm">
             <h2>Product Details</h2>
             <p>ID: <input type="text"
-                          name="id" /></p>
+                          name="id"
+                          [(ngModel)]="newProduct.id"/>
+            </p>
             <p>Name: <input type="text"
-                            name="name" /></p>
+                            name="name"
+                            [(ngModel)]="newProduct.name"/></p>
             <p>Description: <input type="text"
-                                   name="description" /></p>
+                                   name="description"
+                                   [(ngModel)]="newProduct.description"/></p>
             <p>Price: <input type="text"
-                             name="price" /></p>
+                             name="price"
+                             [(ngModel)]="newProduct.price"/></p>
             <p>
                 <button type="button"
-                        class="btn btn-primary">Submit</button>
+                        class="btn btn-primary"
+                        (submit)="saveProduct(newProduct)">Submit</button>
                 <button type="button"
                         class="btn btn-warning">Cancel</button>
             </p>
