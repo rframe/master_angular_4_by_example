@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import {Product} from './product';
 import {PRODUCT_ITEMS} from './product-data';
-
+import {findIndex} from "lodash";
 
 @Injectable()
 export class ProductService {
@@ -22,5 +22,9 @@ export class ProductService {
 
         this.pItems.push(product);
         console.log(this.pItems);
+    }
+    updateProduct(product: Product) {
+       const index =  findIndex(this.pItems, (p: Product) => p.id === product.id);
+       this.pItems[index] = product;
     }
 }

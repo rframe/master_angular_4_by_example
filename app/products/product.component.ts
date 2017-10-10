@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Product} from './product';
 import {ProductService} from './product.service';
+import {clone} from 'lodash';
 
 @Component({
     moduleId: module.id,
@@ -10,8 +11,10 @@ import {ProductService} from './product.service';
 export class ProductComponent implements OnInit {
     public products: Product[];
     public productForm: boolean;
+    public editProductForm: boolean;
     public isNewForm: boolean;
     public newProduct: any = {};
+    public editedProduct: any = {};
 
     constructor(private _productService: ProductService){}
 
@@ -27,15 +30,16 @@ export class ProductComponent implements OnInit {
             this.productForm = false;
             return;
         }
-        this.productForm = true;
-        this.isNewForm = false;
-        this.newProduct = product;
+        this.editProductForm = true;
+        this.productForm = false;
+        this.editedProduct = clone(product);
     }
     showAddProductForm() {
         // resets form if edited
         if (!!this.products.length) {
             this.newProduct = {};
         }
+        this.editProductForm = false;
         this.productForm = true;
         this.isNewForm = true;
 
@@ -45,11 +49,17 @@ export class ProductComponent implements OnInit {
             //This is a new product
             //add
             this._productService.addProduct(product);
-        } else {
-            //This is an existing product
-            //update
         }
         // this.getProducts();
         this.productForm = false;
+    }
+    updateProduct(product: Product) {
+        this._productService.updateProduct(this.editedProduct);
+        this.cancelEdits();
+    }
+    cancelEdits() {
+        this.editProductForm = false;
+        this.editedProduct = {};
+
     }
 }
