@@ -12,4 +12,15 @@ export class ProductService {
         console.log(this.pItems);
         return this.pItems;
     }
+
+    addProduct(product: Product) {
+        // This does not work for this function as we are doing everything in the component referencing the object
+        // this.pItems = [
+        //     ...this.pItems,
+        //     product
+        // ];
+
+        this.pItems.push(product);
+        console.log(this.pItems);
+    }
 }
