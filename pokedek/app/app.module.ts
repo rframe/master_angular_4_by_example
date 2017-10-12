@@ -10,6 +10,7 @@ import { NavbarComponent } from './nav/nav.component';
 import {PokemonService} from "./shared/pokemon.service";
 import {AddPokemonComponent} from "./poke-add/add-pokemon.component";
 import {ListPokemonComponent} from "./poke-list/list-pokemon.component";
+import './shared/rxjs-extensions';
 
 @NgModule({
     imports: [
