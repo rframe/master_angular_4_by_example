@@ -7,17 +7,24 @@ import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './nav/nav.component';
+import {PokemonService} from "./shared/pokemon.service";
+import {AddPokemonComponent} from "./poke-add/add-pokemon.component";
+import {ListPokemonComponent} from "./poke-list/list-pokemon.component";
 
 @NgModule({
-  imports: [ BrowserModule,
-                   FormsModule,
-                   AppRoutingModule
-                   ],
-  declarations: [ AppComponent,
-                          HomeComponent,
-                          NavbarComponent
-                          ],
-  providers: [ ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        AppRoutingModule
+    ],
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        NavbarComponent,
+        AddPokemonComponent,
+        ListPokemonComponent
+  ],
+  providers: [ PokemonService ],
   bootstrap:    [ AppComponent ]
 })
 
