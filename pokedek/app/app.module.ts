@@ -11,12 +11,14 @@ import {PokemonService} from "./shared/pokemon.service";
 import {AddPokemonComponent} from "./poke-add/add-pokemon.component";
 import {ListPokemonComponent} from "./poke-list/list-pokemon.component";
 import './shared/rxjs-extensions';
+import {HttpModule} from "@angular/http";
 
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
-        AppRoutingModule
+        AppRoutingModule,
+        HttpModule
     ],
     declarations: [
         AppComponent,
