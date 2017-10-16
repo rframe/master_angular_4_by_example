@@ -12,13 +12,17 @@ import {AddPokemonComponent} from "./poke-add/add-pokemon.component";
 import {ListPokemonComponent} from "./poke-list/list-pokemon.component";
 import './shared/rxjs-extensions';
 import {HttpModule} from "@angular/http";
+import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
+import {PokemonData} from './shared/pokemon-data';
 
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
         AppRoutingModule,
-        HttpModule
+        HttpModule,
+        InMemoryWebApiModule.forRoot(PokemonData),
+
     ],
     declarations: [
         AppComponent,
