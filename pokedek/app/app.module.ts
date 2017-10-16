@@ -14,6 +14,7 @@ import './shared/rxjs-extensions';
 import {HttpModule} from "@angular/http";
 import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {PokemonData} from './shared/pokemon-data';
+import {ModalModule, TooltipModule} from 'ng2-bootstrap';
 
 @NgModule({
     imports: [
@@ -22,14 +23,15 @@ import {PokemonData} from './shared/pokemon-data';
         AppRoutingModule,
         HttpModule,
         InMemoryWebApiModule.forRoot(PokemonData),
-
+        ModalModule.forRoot(),
+        TooltipModule.forRoot(),
     ],
     declarations: [
         AppComponent,
         HomeComponent,
         NavbarComponent,
         AddPokemonComponent,
-        ListPokemonComponent
+        ListPokemonComponent,
   ],
   providers: [ PokemonService ],
   bootstrap:    [ AppComponent ]
