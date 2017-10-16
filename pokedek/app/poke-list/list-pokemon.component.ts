@@ -1,18 +1,36 @@
 
 
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, ViewChild} from "@angular/core";
 import {PokemonService} from "../shared/pokemon.service";
 import {Pokemon} from "../shared/pokemon";
+import {ModalDirective} from 'ng2-bootstrap';
 
 @Component({
     selector: 'pk-list',
     moduleId: 'ListPokemonComponent',
-    templateUrl: '/app/poke-list/list-pokemon.template.html'
+    templateUrl: '/app/poke-list/list-pokemon.template.html',
+    styles: [`
+            :host >>> .tooltip-inner {
+                background-color: #FF7768;
+                color: #fff;
+            }
+            :host >>> .tooltip-inner::before{
+                border-right-color: #FF7768!important;
+            }
+            :host >>> .tooltip-arrow {
+                border-bottom-color: #FF7768;
+            }
+    `]
 })
 
 export class ListPokemonComponent implements OnInit {
+    @ViewChild('childModal') public childModal: ModalDirective;
     public pokemon: Pokemon[];
     public errorMessage: string;
+
+    // Modal Properties
+    selectedPokemonLoaded: boolean = false;
+    pokeDetails: Pokemon
     constructor(private _pokemonService: PokemonService) {}
 
     ngOnInit() {
@@ -40,5 +58,19 @@ export class ListPokemonComponent implements OnInit {
         if(index > -1) {
             this.pokemon.splice(index, 1);
         }
+    }
+
+    hideChildModal() {
+        this.childModal.hide();
+    }
+    viewSinglePokemon(id: number) {
+        this._pokemonService.getPokemonDetails(id)
+            .subscribe((pokemon: Pokemon) => {
+                this.pokeDetails = pokemon;
+                this.selectedPokemonLoaded = true;
+                this.childModal.show();
+            },
+                error => this.errorMessage = error,
+            );
     }
 }

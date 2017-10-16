@@ -15,7 +15,14 @@ export class PokemonService {
             .do((data: Pokemon[]) => console.log(data))
             .catch(this.handlEerror)
     }
-
+    getPokemonDetails(id: number): Observable<Pokemon> {
+        let url = `${this.pokemonUrl}/${id}`
+        return this._http
+                .get(url)
+                .map((res: Response) => <Pokemon> res.json().data)
+                .do((data: Pokemon) => console.log(data))
+                .catch(this.handlEerror)
+    }
     deletePokemon(pokemon: Pokemon): Observable<Response> {
         let headers = new Headers({'Content-Type': 'applicationCache.json'});
         let options = new RequestOptions({headers});
