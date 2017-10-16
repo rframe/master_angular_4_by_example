@@ -15,6 +15,7 @@ import {HttpModule} from "@angular/http";
 import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {PokemonData} from './shared/pokemon-data';
 import {ModalModule, TooltipModule} from 'ng2-bootstrap';
+import {PokemonModalComponent} from './poke-list/pokemon-modal.component';
 
 @NgModule({
     imports: [
@@ -32,6 +33,7 @@ import {ModalModule, TooltipModule} from 'ng2-bootstrap';
         NavbarComponent,
         AddPokemonComponent,
         ListPokemonComponent,
+        PokemonModalComponent,
   ],
   providers: [ PokemonService ],
   bootstrap:    [ AppComponent ]
