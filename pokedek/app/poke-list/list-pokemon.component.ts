@@ -26,4 +26,19 @@ export class ListPokemonComponent implements OnInit {
                 this.pokemon = pokemon;
             }, error => this.errorMessage = error);
     }
+    deletePokemon(pokemon: Pokemon) {
+        this._pokemonService.deletePokemon(pokemon)
+                .subscribe(() => {},
+                                error => this.errorMessage = error,
+                        () => {
+            // this.getPokemons();
+            this.deletePokemonFromList(pokemon);
+        });
+    }
+    deletePokemonFromList(pokemon: Pokemon) {
+        let index = this.pokemon.indexOf(pokemon, 0);
+        if(index > -1) {
+            this.pokemon.splice(index, 1);
+        }
+    }
 }

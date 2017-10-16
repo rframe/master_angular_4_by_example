@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Http, Response} from "@angular/http";
+import {Http, Response, Headers, RequestOptions} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import {Pokemon} from "./pokemon";
 
@@ -14,6 +14,16 @@ export class PokemonService {
             .map((res: Response) => <Pokemon[]> res.json().data)
             .do((data: Pokemon[]) => console.log(data))
             .catch(this.handlEerror)
+    }
+
+    deletePokemon(pokemon: Pokemon): Observable<Response> {
+        let headers = new Headers({'Content-Type': 'applicationCache.json'});
+        let options = new RequestOptions({headers});
+        let url = `${this.pokemonUrl}/${pokemon.id}`;
+
+        return this._http
+            .delete(url, options)
+                .catch(this.handlEerror);
     }
 
     private handlEerror(error: Response) {
