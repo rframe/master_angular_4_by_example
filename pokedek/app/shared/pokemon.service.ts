@@ -26,6 +26,18 @@ export class PokemonService {
                 .catch(this.handlEerror);
     }
 
+    addPokemon(pokemon: any): Observable<Pokemon> {
+        let headers = new Headers({'Content-Type': 'applicationCache.json'});
+        let options = new RequestOptions({headers});
+        let url = `${this.pokemonUrl}`;
+        let body = JSON.stringify(pokemon);
+        return this._http
+                .post(url, body, options)
+                .map((res: Response) => res.json())
+                .do((data) => console.log(data))
+                .catch(this.handlEerror);
+    }
+
     private handlEerror(error: Response) {
         let msg = `Error status code ${error.status} status ${error.statusText} as ${error.url}`;
         return Observable.throw(msg);
