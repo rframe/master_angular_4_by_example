@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 
 import './shared/rxjs-extensions';
 import {UIModule} from './ui/ui.module';
+import {CarouselModule} from './carousel/carousel.module';
 
 @NgModule({
     imports: [
@@ -16,6 +17,7 @@ import {UIModule} from './ui/ui.module';
         FormsModule,
         AppRoutingModule,
         UIModule,
+        CarouselModule,
     ],
     declarations: [
         AppComponent,
